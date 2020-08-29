@@ -1,0 +1,154 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{environ}
+\usepackage{physics}
+
+\NewEnviron{NORMAL}{% 
+    \scalebox{5}{$\BODY$} 
+} 
+ 
+
+\title{Using the Jacobian to map directional derivatives between coordinate systems}
+\author{Max Sills }
+\date{August 2020}
+
+\begin{document}
+\maketitle
+
+\section{Mapping gradients between coordinate systems}
+
+Start with a function U in cartesian coordinates, and U' for that function expressed in polar coordinates.
+
+We can use the change of coordinates formula to express U' given U
+
+
+\[ x = r * cos(\theta) \]
+\[ y = r * sin (\theta)\]
+
+
+Now say we were able to express the gradient of U in cartesian coordinates
+\[
+\nabla U = \frac{\partial U} {\partial x}+
+\frac{\partial U} {\partial y}
+\]
+
+How could we express the gradient of U' in polar coordinates? Well, we've already been given U' in polar coordinates, so we could compute the gradient directly. However, we can also use the chain rule, the change of coordinates formula, and our knowledge of the gradient in cartesian coordinates to directly derive the gradient in polar coordinates.
+
+$$
+\nabla U' = \frac{\partial U'} {\partial r}+
+\frac{\partial U'} {\partial \theta}
+$$
+
+By the chain rule, 
+
+$$
+\frac{\partial U'} {\partial r} = \frac{\partial U'} {\partial x}\frac{\partial x} {\partial r}
++ 
+\frac{\partial U'} {\partial y}\frac{\partial y} {\partial r}
+$$
+
+$$
+\frac{\partial U'} {\partial \theta} = \frac{\partial U'} {\partial x}\frac{\partial x} {\partial \theta}
++ 
+\frac{\partial U'} {\partial y}\frac{\partial y} {\partial \theta}
+$$
+
+We can rewrite these relations as a covector acting on a Jacobian
+\begingroup
+\LARGE
+\begin{equation}
+\left\langle
+\begin{matrix}\frac{\partial U}{\partial r} & \frac{\partial U} {\partial \theta}
+\end{matrix}
+\right\rangle=\left\langle
+\begin{matrix}\frac{\partial U}{\partial x} & \frac{\partial U} {\partial y}
+\end{matrix}
+\right\rangle
+*
+\begin{bmatrix}
+\frac{\partial x}{\partial r} & \frac{\partial y}{\partial r}\\\frac{\partial x}{\partial \theta} & \frac{\partial y}{\partial \theta}
+\end{bmatrix}
+\end{equation}
+\endgroup
+
+We want to find the gradient of U in polar coordinates, which can be represented as the partials of U with respect to r and theta. This is equal to the matrix product of the covector of the gradient in cartesian coordinates which was found above, and the Jacobian, which can be entirely derived from the change of coordinates functions from cartesian to polar.
+
+\section{Examples}
+
+Before we work examples, let's identify the transition functions to and from polar coordinates and the corresponding Jacobians to make things easier.
+
+\subsection{Cartesian to Polar}
+
+
+\begin{align}
+r &= \sqrt{x^2 + y^2} \\
+\theta &= \arctan{\left(\frac{y}{x}\right)} 
+\end{align}
+
+\begin{equation}
+\begin{bmatrix}
+\frac{x}{\sqrt{x^2 + y^2}} & \frac{y}{\sqrt{x^2 + y^2}} \\
+\frac{-y}{x^2 + y^2}       & \frac{x}{x^2+y^2}          
+\end{bmatrix}
+=
+\begin{bmatrix}
+\cos\theta & sin\theta  \\
+\frac{-\sin\theta}{r} &  \frac{\cos\theta}{r}
+\end{bmatrix}
+\end{equation}
+
+\subsection{Polar to Cartesian}
+\[ x = r * cos(\theta) \]
+\[ y = r * sin (\theta)\]
+
+\begin{equation}
+\begin{bmatrix}
+\cos\theta & -r\,\sin\theta  \\
+\sin\theta &  r\,\cos\theta
+\end{bmatrix} 
+\end{equation}
+
+\subsection{Example 1: U = x + y}
+\[ U = x + y\]
+\[\nabla U = \pdv{U}{x} + \pdv{U}{y} = <1,1>  \]
+
+Now to express U in polar coordinates (r, theta) we find
+\[ U = \sqrt{x^2 + y^2} + atan2(y, x)  \]
+\[\nabla U = \pdv{U}{r} + \pdv{U}{\theta} = 0  \]
+
+\begin{equation}
+\begin{bmatrix}
+cos + sin & r(cos-sin)
+\end{bmatrix}
+*
+\begin{bmatrix}
+\cos\theta & sin\theta  \\
+\frac{-\sin\theta}{r} &  \frac{\cos\theta}{r}
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 1
+\end{bmatrix}
+\end{equation}
+
+\subsection{Example 2: U(r, theta) = r *theta}
+
+\[U = r * \theta\]
+\[\nabla U = \theta \pdv{U}{r}+ r \pdv{U}{\theta} \]
+
+U(r, theta) in cartesian coordinates:
+
+\[ U(x, y) =\sqrt{x^2 +y^2}
+*
+\arctan\frac{y}{x} \]
+
+\begin{equation}
+\nabla U =
+\frac{x \atan(y/x) - y}{\sqrt{x^2 + y^2}}
+\pdv{U}{x} 
++
+\frac{y \atan(y/x) + x}{\sqrt{x^2 + y^2}}
+\pdv{U}{y} 
+\end{equation}
+\end{document}
