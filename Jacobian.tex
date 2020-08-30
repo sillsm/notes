@@ -13,6 +13,36 @@
 \author{Max Sills }
 \date{August 2020}
 
+% Defining bank of important matrices for easy reuuse
+\newcommand{\showMatrixOne}{\ensuremath{
+\begin{bmatrix}
+\frac{x}{\sqrt{x^2 + y^2}} & \frac{y}{\sqrt{x^2 + y^2}} \\
+\frac{-y}{x^2 + y^2}       & \frac{x}{x^2+y^2}          
+\end{bmatrix}
+}}
+
+\newcommand{\showMatrixTwo}{\ensuremath{
+\begin{bmatrix}
+\cos\theta & sin\theta  \\
+\frac{-\sin\theta}{r} &  \frac{\cos\theta}{r}
+\end{bmatrix}
+}}
+
+\newcommand{\showMatrixThree}{\ensuremath{
+\begin{bmatrix}
+\cos\theta & -r\,\sin\theta  \\
+\sin\theta &  r\,\cos\theta
+\end{bmatrix}
+}}
+
+\newcommand{\showMatrixFour}{\ensuremath{
+\begin{bmatrix}
+\frac{x}{\sqrt{x^2 + y^2}} & -y \\
+\frac{y}{\sqrt{x^2 + y^2}} & x     
+\end{bmatrix}
+}}
+% End matrix bank
+
 \begin{document}
 \maketitle
 
@@ -85,17 +115,10 @@ Before we work examples, let's identify the transition functions to and from pol
 r &= \sqrt{x^2 + y^2} \\
 \theta &= \arctan{\left(\frac{y}{x}\right)} 
 \end{align}
-
 \begin{equation}
-\begin{bmatrix}
-\frac{x}{\sqrt{x^2 + y^2}} & \frac{y}{\sqrt{x^2 + y^2}} \\
-\frac{-y}{x^2 + y^2}       & \frac{x}{x^2+y^2}          
-\end{bmatrix}
+\showMatrixOne
 =
-\begin{bmatrix}
-\cos\theta & sin\theta  \\
-\frac{-\sin\theta}{r} &  \frac{\cos\theta}{r}
-\end{bmatrix}
+\showMatrixTwo
 \end{equation}
 
 \subsection{Polar to Cartesian}
@@ -103,10 +126,9 @@ r &= \sqrt{x^2 + y^2} \\
 \[ y = r * sin (\theta)\]
 
 \begin{equation}
-\begin{bmatrix}
-\cos\theta & -r\,\sin\theta  \\
-\sin\theta &  r\,\cos\theta
-\end{bmatrix} 
+\showMatrixThree 
+=
+\showMatrixFour
 \end{equation}
 
 \subsection{Example 1: U = x + y}
@@ -114,8 +136,9 @@ r &= \sqrt{x^2 + y^2} \\
 \[\nabla U = \pdv{U}{x} + \pdv{U}{y} = <1,1>  \]
 
 Now to express U in polar coordinates (r, theta) we find
-\[ U = \sqrt{x^2 + y^2} + atan2(y, x)  \]
-\[\nabla U = \pdv{U}{r} + \pdv{U}{\theta} = 0  \]
+\[ U = r*cos\theta + r*sin\theta  \]
+\[\nabla U = cos\theta + sin \theta \pdv{U}{r} 
++ r (cos\theta - sin \theta \pdv{U}{\theta} \]
 
 \begin{equation}
 \begin{bmatrix}
@@ -131,6 +154,71 @@ cos + sin & r(cos-sin)
 1 & 1
 \end{bmatrix}
 \end{equation}
+
+Now, how might we take an arbitrary directional derivative in the first coordinate system and map it to a directional derivative in the second?
+
+Our gradient in the first coordinate system is 
+\[\begin{bmatrix}
+1 & 1
+\end{bmatrix}
+\]
+
+When we apply an arbitrary directional derivative (a, b), we produce a scalar:
+\begin{displaymath}
+\begin{bmatrix}
+1 & 1
+\end{bmatrix}
+*
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix}
+=
+a + b
+\end{displaymath}
+
+Applying the Jacobian to the vector this time, instead of the gradient (covector) to the Jacobian, we find:
+\begin{displaymath}
+\showMatrixTwo
+*
+\begin{bmatrix}
+a \\
+b
+\end{bmatrix}
+=
+\begin{bmatrix}
+a cos(\theta) + b sin(\theta) \\
+\frac{-a sin(\theta)}{r} +
+\frac{b cos (\theta)}{r}
+\end{bmatrix}
+\end{displaymath}
+
+Finally, applying this transformed vector to the gradient we found in polar coordinates we see:
+
+
+\begin{displaymath}
+\begin{bmatrix}
+cos + sin & r(cos-sin)
+\end{bmatrix}
+*
+\begin{bmatrix}
+a cos(\theta) + b sin (\theta) \\
+\frac{-a sin(\theta)}{r} +
+\frac{b cos (\theta)}{r}
+\end{bmatrix}
+=
+\end{displaymath}
+\begin{displaymath}
+\begin{aligned}
+(acos + bsin)(cos + sin) + (cos- sin)(bcos -asin) \\
+= acos^2 + asin cos + bsin cos + bsin^2 \\
++ bcos^2 - asin cos - bsin cos + a sin^2 \\
+= acos^2 + b sin^2 + bcos^2 + a sin^2 \\
+= a(cos^2 + sin^2) + b(cos^2 + sin^2) \\
+= a + b
+\end{aligned}
+\end{displaymath}
+
 
 \subsection{Example 2: U(r, theta) = r *theta}
 
