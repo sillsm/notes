@@ -12,4 +12,4 @@ jobs:
     - name: nbconvert .ipynb's
       uses: runsascoded/nbconvert@v1.2
       with:
-       args: -f -x -b=origin/master
+       args: -f -x -b=master
