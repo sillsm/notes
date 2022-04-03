@@ -1,14 +1,13 @@
 theme: jekyll-theme-minimal
 
 defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
+  # Posts defaults
+  - scope:
+      path: "_posts"
+      type: posts
     values:
-      layout: "post"
-      comments: true  # add comments to all blog posts
-      social-share: true # add social media sharing buttons to all blog posts
+      layout: post
+      share: true
   -
     scope:
       path: "" # any file that's not a post will be a "page" layout by default
