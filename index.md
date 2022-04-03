@@ -24,7 +24,6 @@ $$
 
 
 ## blah
-site.posts : {{ site.posts }}
 My posts:
 <ul>
   {% for post in site.posts %}
