@@ -10,6 +10,26 @@ There should be whitespace between paragraphs.
 
 There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
 
+# Some Latex testing
+
+$$\vec{R} = \begin{bmatrix}
+           R_{x}\\
+           R_{y} \\
+           R_{z}
+         \end{bmatrix}
+         =\begin{bmatrix}
+           -  \frac{cos\theta}{sin\theta}cos\phi \frac{\partial }{\partial \phi}  - sin\phi \frac{\partial }{\partial \theta}
+           \\
+           -  \frac{cos\theta}{sin\theta}cos\phi \frac{\partial }{\partial \phi}  + cos\phi \frac{\partial }{\partial \theta} 
+           \\
+           \frac{\partial }{\partial \phi} 
+         \end{bmatrix}
+         $$
+
+$$
+R_{\alpha} = i L_{\alpha}, where \, \alpha = x,y,z
+$$
+
 # Header 1
 
 This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
