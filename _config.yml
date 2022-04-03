@@ -1,15 +1,1 @@
 theme: jekyll-theme-minimal
-
-defaults:
-  # Posts defaults
-  - scope:
-      path: "_posts"
-      type: posts
-    values:
-      layout: post
-      share: true
-  -
-    scope:
-      path: "" # any file that's not a post will be a "page" layout by default
-    values:
-      layout: "page"
