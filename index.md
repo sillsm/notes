@@ -22,17 +22,18 @@ $$
 R_{\alpha} = i L_{\alpha}, where \, \alpha = x,y,z
 $$
 
-## Showing mathjax can load tixz
-$$
- \[
-\begin{tikzcd}
-Charts(p) := \psi^{'} \arrow[r, "\psi \circ \psi^{'-1}"] \arrow[d, "X_{\psi^{'}, -}"]
-& Charts(p) := \psi \arrow[d, "X_{\psi, -}" ] \\
-TPM(p) \arrow[r, "A" ]
-&  TPM(p)
-\end{tikzcd}
-\]
-$$
+
+## blah
+site.posts : {{ site.posts }}
+My posts:
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
 
 # Rest of content
 
