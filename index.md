@@ -23,7 +23,7 @@ R_{\alpha} = i L_{\alpha}, where \, \alpha = x,y,z
 $$
 
 ## Showing mathjax can load tixz
-
+$$
  \[
 \begin{tikzcd}
 Charts(p) := \psi^{'} \arrow[r, "\psi \circ \psi^{'-1}"] \arrow[d, "X_{\psi^{'}, -}"]
@@ -32,6 +32,7 @@ TPM(p) \arrow[r, "A" ]
 &  TPM(p)
 \end{tikzcd}
 \]
+$$
 
 # Rest of content
 
