@@ -3,6 +3,7 @@ logo: /assets/img/logo.png
 description: Minimal is a theme for GitHub Pages.
 show_downloads: true
 
+permalink: /:title/
 excerpt_separator: "\n\n\n"
 date_format: "%B %d, %Y"
 
