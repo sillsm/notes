@@ -2,6 +2,26 @@
 layout: default
 ---
 
+# Trying some latex
+
+$$\vec{R} = \begin{bmatrix}
+           R_{x}\\
+           R_{y} \\
+           R_{z}
+         \end{bmatrix}
+         =\begin{bmatrix}
+           -  \frac{cos\theta}{sin\theta}cos\phi \frac{\partial }{\partial \phi}  - sin\phi \frac{\partial }{\partial \theta}
+           \\
+           -  \frac{cos\theta}{sin\theta}cos\phi \frac{\partial }{\partial \phi}  + cos\phi \frac{\partial }{\partial \theta} 
+           \\
+           \frac{\partial }{\partial \phi} 
+         \end{bmatrix}
+         $$
+
+$$
+R_{\alpha} = i L_{\alpha}, where \, \alpha = x,y,z
+$$
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./another-page.html).
