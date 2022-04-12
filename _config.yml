@@ -9,5 +9,9 @@ date_format: "%B %d, %Y"
 
 logo: /assets/img/photo.jpg
 
+markdown: kramdown
+kramdown:
+  parse_block_html: true
+
 plugins:
  - jekyll-feed
